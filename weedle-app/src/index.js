@@ -7,6 +7,7 @@ import App from './App';
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAnalytics } from "firebase/analytics";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -32,6 +33,6 @@ const db = getDatabase(app);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App db={db}/>
   </React.StrictMode>
 );
