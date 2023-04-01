@@ -9,7 +9,7 @@ export default function Navbar() {
         <div className='title'>Weedle</div>
         <Link className='link' id='radar-link' to='/radar'>Radar</Link>
         <Link className='link' id='leaderboard-link' to='/leaderboard'>Leaderboard</Link>
-        <Login className='link login' />
+        <Login />
     </div>
   )
 }

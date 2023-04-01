@@ -1,8 +1,10 @@
 import React from 'react'
 
-const LeaderBoard = () => {
+export default function LeaderBoard() {
   return (
-    <div>LeaderBoard</div>
+    <div>
+
+    </div>
   )
 }
 

@@ -9,14 +9,12 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
-    <Navbar />
-    <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/radar" element={<Radar />}></Route>
-        <Route path="/leaderboard" element={<LeaderBoard />}></Route>
-    </Routes>
-    </div>
+      <Navbar />
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/radar" element={<Radar />}></Route>
+          <Route path="/leaderboard" element={<LeaderBoard />}></Route>
+      </Routes>
     </BrowserRouter>
   );
 }
