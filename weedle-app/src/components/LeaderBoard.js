@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './styles/LeaderboardStyles.css'
-
-export default function LeaderBoard() {
+import {ref, onValue} from "firebase/database"
+export default function LeaderBoard(props) {
   const [elements, setElements] = useState()
   function fetchLeaderboards() {
+    const query = ref(props.db, 'users/' + 1)
+    onValue(query, (user) => {
+      const data = user.val()
+      console.log(data)
+    })
     const data = [
       {
         user: 'Alice',

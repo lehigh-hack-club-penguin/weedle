@@ -6,14 +6,14 @@ import LeaderBoard from './components/LeaderBoard';
 import Radar from './components/Radar';
 import Navbar from './components/Navbar';
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/radar" element={<Radar />}></Route>
-          <Route path="/leaderboard" element={<LeaderBoard />}></Route>
+          <Route path="/leaderboard" element={<LeaderBoard db={props.db}/>}></Route>
       </Routes>
     </BrowserRouter>
   );
