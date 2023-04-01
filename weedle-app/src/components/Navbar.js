@@ -4,11 +4,23 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { PersonFill } from 'react-bootstrap-icons';
 import Login from './Login';
+import Upload from './Upload';
 
 export default function Navbar(props) {
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const [showUpload, setShowUpload] = useState(false);
+  const handleCloseUpload = () => setShowUpload(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(localStorage.getItem('userLoggedIn') === 'true');
+
+  function handleButtonClick() {
+    if (userLoggedIn) {
+      setShowUpload(true);
+    } else {
+      setShow(true);
+    }
+  }
+
   return (
     <div className='navbar'>
         <div className='title'>Weedle</div>
@@ -19,12 +31,12 @@ export default function Navbar(props) {
           className='link' 
           id='weedle-link' 
           variant="primary"
-          onClick={handleShow}
+          onClick={handleButtonClick}
         >
           Weedle
         </Button>
-        <Login show={show} handleClose={handleClose} handleShow={handleShow} db={props.db}/>
-
+        <Login show={show && !userLoggedIn} handleClose={handleClose} db={props.db} setUserLoggedIn={setUserLoggedIn} setShowUpload={setShowUpload}/>
+        <Upload showUpload={showUpload && userLoggedIn} handleCloseUpload={handleCloseUpload} db={props.db}/>
         <Button variant="primary"  className="rounded-circle link" id='profile-button'>
           <PersonFill /> 
         </Button>

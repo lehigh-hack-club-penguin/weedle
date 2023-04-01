@@ -1,15 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import jwt_decode from "jwt-decode";
-import { Navigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import { GoogleLogin } from '@react-oauth/google';
 import { ref, onValue, set } from "firebase/database";
+// import function Upload
+import Upload from './Upload';
+
 // import css
 import './styles/Login.css';
 
 export default function Login(props) {
-
+    
+    const [userLoggedIn, setUserLoggedIn] = useState(false);
+    
     function handleCallbackResponse(response) {
         const tokenId = response.credential;
         // console.log("Encoded JWT ID token: " + tokenId);
@@ -36,10 +39,16 @@ export default function Login(props) {
                 console.log('User exists');
             }
         });
+        props.handleClose();
+        props.setUserLoggedIn(true);
+        // save userLoggedIn to local storage
+        localStorage.setItem('userLoggedIn', true);
+        props.setShowUpload(true);
     }
 
   return (
-    <Modal show={props.show} onHide={props.handleClose} centered >
+    <>
+    <Modal show={props.show && !userLoggedIn} onHide={props.handleClose} centered >
         <Modal.Header closeButton>
             <Modal.Title as="h5">You need to sign in to use this feature!</Modal.Title>
         </Modal.Header>
@@ -49,10 +58,11 @@ export default function Login(props) {
                 onError={() => {
                     console.log('Login Failed');
                 }}
-                auto_select
             />
         </Modal.Body>
     </Modal>
+    
+    </>
   );
 }
 
