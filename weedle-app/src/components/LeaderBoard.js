@@ -1,41 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import './styles/LeaderboardStyles.css'
-import {ref, onValue} from "firebase/database"
+import {ref, get} from "firebase/database"
+
 export default function LeaderBoard(props) {
+
   const [elements, setElements] = useState()
-  function fetchLeaderboards() {
-    const query = ref(props.db, 'users/' + 1)
-    onValue(query, (user) => {
-      const data = user.val()
-      console.log(data)
-    })
-    const data = [
-      {
-        user: 'Alice',
-        points: 23,
-      },
-      {
-        user: 'Mike Hawk',
-        points: 12,
-      },
-      {
-        user: 'Jerry',
-        points: 56,
-      }
-    ]
-    setElements(
-      data.map((userData, index) => {
+
+  async function fetchLeaderboards() {
+    var userData = []
+    const query = ref(props.db, 'users/')
+    await get(query).then((users) => {
+      const data = users.val()
+      data.forEach((user) => {
+        userData.push({ username: user.username, points: user.points })
+      })
+    });
+
+    userData.sort((a, b) => b.points - a.points);
+
+      setElements(userData.map((user, index) => {
         return( 
-          <div className='row' id={index%2 ? 'white':'grey'}>
+          <div className='row' key={index} id={index%2 ? 'white':'grey'}>
             <p className='row-element'>#{index+1}</p>
-            <p className='row-element'>{userData.user}</p>
-            <p className='row-element'>{userData.points}</p>
+            <p className='row-element'>{user.username}</p>
+            <p className='row-element'>{user.points}</p>
           </div>
         );
-      })
-    )
+      }))
   }
-  console.log(elements)
 
   useEffect(() => {
     fetchLeaderboards()
