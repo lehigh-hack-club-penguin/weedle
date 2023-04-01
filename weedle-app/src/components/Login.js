@@ -76,7 +76,7 @@ export default function Login() {
   }, []);
 
   return (
-    <div className='App'>
+    <div className='login'>
       <div id="signInDiv"></div>
       {Object.keys(user).length > 0 && userExists && <Navigate replace to="/feed" />}
       {Object.keys(user).length > 0 && !userExists && <Navigate replace to="/signup"/>}
