@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './styles/LeaderboardStyles.css'
-import {ref, onValue, get} from "firebase/database"
+import {ref, get} from "firebase/database"
 
 export default function LeaderBoard(props) {
 
