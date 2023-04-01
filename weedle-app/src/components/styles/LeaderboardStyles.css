@@ -1,0 +1,23 @@
+.row {
+    height: 50px;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.row-element {
+    width: 200px;
+}
+
+.list {
+    margin-top: 20px;
+}
+
+#grey {
+    background-color: rgb(187, 187, 187);
+}
+
+#white {
+    background-color: white;
+}
