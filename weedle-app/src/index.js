@@ -5,6 +5,7 @@ import App from './App';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,12 +19,15 @@ const firebaseConfig = {
   storageBucket: "weedle-3f1c5.appspot.com",
   messagingSenderId: "312335188057",
   appId: "1:312335188057:web:0c5c2e61cb95713b8db148",
-  measurementId: "G-JZRNFEY022"
+  measurementId: "G-JZRNFEY022",
+  // The value of `databaseURL` depends on the location of the database
+  databaseURL: "https://weedle-3f1c5-default-rtdb.firebaseio.com/",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const db = getDatabase(app);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
