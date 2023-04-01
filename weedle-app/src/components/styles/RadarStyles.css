@@ -1,0 +1,29 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.plant-list {
+    width: 100%;
+    height: 90vh;
+    overflow-y: scroll;
+}
+
+.plant-map {
+    border-left: 2px solid grey;
+    width: 100%;
+    height: 90vh;
+    overflow-y: scroll;
+}
+
+.invasive-title {
+    width: 100%;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
+
+.center-text {
+    
+}
