@@ -1,18 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Home from './Home';
-import LeaderBoard from './LeaderBoard';
-import Radar from './Radar';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from './components/Login';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/radar" element={<Radar />} />
-        <Route path="/leaderboard" element={<LeaderBoard />} />
-      </Routes>
+    <div className="App">
+    <Routes>
+        <Route path="/" element={<Login />} />
+    </Routes>
+    </div>
     </BrowserRouter>
   );
 }
