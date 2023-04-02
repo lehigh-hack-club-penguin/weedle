@@ -18,6 +18,7 @@ export default function Upload(props) {
         if (file !== null && file !== undefined) {
             console.log(file);
             // TODO: UPLOAD FILE TO FIREBASE
+            // TODO: 
             props.handleCloseUpload();
         } else {
             setAttemptedUpload(true);
@@ -36,7 +37,7 @@ export default function Upload(props) {
         <>
             <Modal show={props.showUpload} onHide={props.handleCloseUpload} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Upload Picture</Modal.Title>
+                    <Modal.Title>Let's Weedle!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
