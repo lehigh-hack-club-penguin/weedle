@@ -24,7 +24,7 @@ export default function PlantInfo(props) {
     
 
     return (
-        <div className='plant-map'>
+        <div className='description-plant'>
             <div className='plant-info'>
                 <div className='plant-name'>{props.name}</div>
                 <div className='plant-description'>{props.desc}</div>

@@ -1,7 +1,13 @@
 import {React, useEffect, useState} from 'react'
 import './styles/RadarStyles.css'
 import PlantInfo from './PlantInfo'
+import './styles/MapStyles.css'
 import { ref, get } from "firebase/database"
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+
+var userLat = 40.600526;
+var userLng = -75.362015;
+const id = ["404f73171fbd2fa8"];
 
 export default function Radar(props) {
 
@@ -9,7 +15,6 @@ export default function Radar(props) {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [selectedPlant, setSelectedPlant] = useState()
     const [invasiveList, setInvasiveList] = useState()
-    const [fetched, setFetched] = useState(false)
 
     function handle(index) {
         setSelectedIndex(index)
@@ -55,17 +60,52 @@ export default function Radar(props) {
         }
     }, [data])
 
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: 'AIzaSyDJ7LumYrHTspXN4rQmFZBrpMx3Ugg7Oak',
+        mapIds: { id }
+    });
+    if (!isLoaded) return <div>Loading...</div>
+
     return (
-        <div className='container'>
+        <div className='plant-container'>
             <div className='plant-list'>
-                <div className='invasive-title'>
-                    <div className='center-text'>Invasive Plants</div>
-                </div>
-                <div className='plant-list'>
-                    {invasiveList}
-                </div>
+                {invasiveList}
             </div>
-            {selectedPlant ? <PlantInfo name={selectedPlant.name} desc={selectedPlant.desc} img={selectedPlant.img}/>: <></>}
+            <div className='plant-map'>
+                {selectedPlant ? <PlantInfo name={selectedPlant.name} desc={selectedPlant.desc} img={selectedPlant.img} /> : <></>}
+                <Map />
+            </div>
         </div>
     )
 }
+
+function Map() {
+
+    return (
+        <GoogleMap
+            zoom={12}
+            center={{ lat: userLat, lng: userLng }}
+            className="map-container"
+        >
+            <Marker position={{ lat: userLat, lng: userLng }} title={"Hello"} />
+        </GoogleMap>
+    );
+}
+(function getUserLocation() {
+    if (navigator.geolocation) {
+        // get user's current position
+        navigator.geolocation.getCurrentPosition(
+            // success callback
+            (position) => {
+                userLat = position.coords.latitude;
+                userLng = position.coords.longitude;
+            },
+            // error callback
+            (error) => {
+                console.error(error);
+            }
+        );
+    } else {
+        console.error("Geolocation is not supported by this browser.");
+    }
+})();

@@ -1,22 +1,40 @@
+.description-plant {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+}
+
 .plant-info {
     grid-area: 1 / 1 / 2 / 2;
+    text-align: center;
 }
 
 .plant-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     width: 100%;
+    height: 30%;
     text-align: center;
     font-size: 32px;
-    margin-bottom: 30px;
-    margin-top: 30px;
 }
 
 .plant-description {
-    margin: 5px;
+    padding-left: 10%;
+    padding-right: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    width: 80%;
+    height: 70%;
+    font-size: 24px;
 }
 
 .plant-img {
+    width: 95%;
+    height: 95%;
     grid-area: 1 / 2 / 2 / 3;
-    width: 400px;
-    height: 400px;
-    margin: 2%;
+    margin: 2.5%;
 }

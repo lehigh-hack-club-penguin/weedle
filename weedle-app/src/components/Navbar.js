@@ -6,10 +6,9 @@ import Login from './Login'
 export default function Navbar() {
   return (
     <div className='navbar'>
-        <div className='title'>Weedle</div>
-        <Link className='link' id='radar-link' to='/radar'>Radar</Link>
-        <Link className='link' id='leaderboard-link' to='/leaderboard'>Leaderboard</Link>
-        
+      <Link className='title link' to='/'>Weedle</Link>
+      <Link className='link' id='radar-link' to='/radar'>Radar</Link>
+      <Link className='link' id='leaderboard-link' to='/leaderboard'>Leaderboard</Link>
     </div>
   )
 }
