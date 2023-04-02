@@ -16,7 +16,7 @@
 
 .plant-img {
     grid-area: 1 / 2 / 2 / 3;
-    width: 96%;
-    height: 96%;
+    width: 400px;
+    height: 400px;
     margin: 2%;
 }

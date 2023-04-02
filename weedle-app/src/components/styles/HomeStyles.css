@@ -1,0 +1,10 @@
+.home-container {
+    background: url('../imgs/pexels-guy-lebreton-4197781.jpg') no-repeat center;
+    background-size: cover;
+    height: 90vh;
+}
+
+.home-title {
+    color: white;
+    font-size: 72px;
+}
