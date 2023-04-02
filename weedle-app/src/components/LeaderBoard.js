@@ -36,9 +36,9 @@ export default function LeaderBoard(props) {
   return (
     <div className='list'>
       <div className='row'>
-        <div id='leader-position' className='row-element'><strong>Position</strong></div>
-        <div id='row-user' className='row-element'><strong>Username</strong></div>
-        <div id='row-points' className='row-element'><strong>Points</strong></div>
+        <p id='leader-position' className='row-element'><strong>Position</strong></p>
+        <p id='row-user' className='row-element'><strong>Username</strong></p>
+        <p id='row-points' className='row-element'><strong>Points</strong></p>
       </div>
       {elements}
     </div>
