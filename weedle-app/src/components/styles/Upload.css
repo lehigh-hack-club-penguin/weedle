@@ -1,0 +1,29 @@
+.points-notification {
+    position: fixed;
+    /* center the element */
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00c853;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    z-index: 999;
+    animation: bounce-out 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  }
+  
+  @keyframes bounce-out {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    30% {
+      transform: translate(-50%, -50%) scale(1.25);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -150%) scale(0.75);
+    }
+  }
+  
