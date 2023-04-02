@@ -75,6 +75,7 @@ export default function Radar(props) {
             data.map((plant, index) => {
                 return(
                     <div className='side-button' id={highlighted===index ? 'highlighted':'unhighlighted'} key={index} onClick={() => handle(index)}>
+                        <div>&nbsp;&nbsp;{index+1}</div>
                         <div className='table-frequency'>{(plant.frequency)+'%'}</div>
                         <div className='table-name'>{plant.name}</div>
                     </div>
