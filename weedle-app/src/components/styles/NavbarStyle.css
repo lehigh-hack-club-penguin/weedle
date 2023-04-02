@@ -4,6 +4,8 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     border-bottom: 1px solid grey;
+    position: fixed;
+    background-color: white;
 }
 
 .title {
