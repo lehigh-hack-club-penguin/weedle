@@ -29,6 +29,24 @@ export default function Header(props) {
   }
 
   return (
+    <>
+    <style> type="text/css">
+        {`
+        .btn-weedle {
+          background-color: #8159EB;
+          font-size: 12px;
+          color: white;
+          border: none;
+        }
+        
+        .btn-weedle:hover {
+          background-color: #6747bd;
+          font-size: 12px;
+          color: white;
+          border: none;
+        }
+        `}
+    </style>
     <Navbar id="navbar" sticky="top">
     <Container>
       <Navbar.Brand href="/">
@@ -50,7 +68,9 @@ export default function Header(props) {
               <Nav.Link href="/radar">Radar</Nav.Link>
       </Nav>
       <Button
-        variant="primary"
+        variant="success"
+        class="btn btn-green"
+        style={{ color: "white", background: "#014421" }}
         size="sm"
         onClick={handleButtonClick}
         >
@@ -64,10 +84,16 @@ export default function Header(props) {
       &nbsp;&nbsp;&nbsp;&nbsp;
         <Login show={show && !userLoggedIn} handleClose={handleClose} db={props.db} setUserLoggedIn={setUserLoggedIn} setShowUpload={setShowUpload}/>
         <Upload showUpload={showUpload && userLoggedIn} handleCloseUpload={handleCloseUpload} db={props.db}/>
-        <Button variant="primary"  className="rounded-circle link" id='profile-button'>
+        <Button 
+          variant="success" 
+          class="btn btn-green"
+          style={{ color: "white", background: "#014421" }}
+          size="sm" 
+          id='profile-button'>
           <PersonFill /> 
         </Button>
         </Container>
     </Navbar>
+    </>
   )
 }
