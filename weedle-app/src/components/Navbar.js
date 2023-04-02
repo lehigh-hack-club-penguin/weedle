@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Upload from './Upload';
-import logo from '../logo.svg';
+import logo from '../weedle-logo.svg';
 
 export default function Header(props) {
   const [show, setShow] = useState(false);
@@ -30,23 +30,6 @@ export default function Header(props) {
 
   return (
     <>
-    <style> type="text/css">
-        {`
-        .btn-weedle {
-          background-color: #8159EB;
-          font-size: 12px;
-          color: white;
-          border: none;
-        }
-        
-        .btn-weedle:hover {
-          background-color: #6747bd;
-          font-size: 12px;
-          color: white;
-          border: none;
-        }
-        `}
-    </style>
     <Navbar id="navbar" sticky="top">
     <Container>
       <Navbar.Brand href="/">
@@ -69,8 +52,8 @@ export default function Header(props) {
       </Nav>
       <Button
         variant="success"
-        class="btn btn-green"
-        style={{ color: "white", background: "#014421" }}
+        // class="btn btn-green"
+        // style={{ color: "white", background: "#006400" }}
         size="sm"
         onClick={handleButtonClick}
         >
@@ -86,8 +69,8 @@ export default function Header(props) {
         <Upload showUpload={showUpload && userLoggedIn} handleCloseUpload={handleCloseUpload} db={props.db}/>
         <Button 
           variant="success" 
-          class="btn btn-green"
-          style={{ color: "white", background: "#014421" }}
+          // class="btn btn-green"
+          // style={{ color: "white", background: "#006400" }}
           size="sm" 
           id='profile-button'>
           <PersonFill /> 
