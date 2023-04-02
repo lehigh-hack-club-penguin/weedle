@@ -58,15 +58,6 @@ export default function Profile(props) {
                     <br></br>
                     <br></br>
                 </Modal.Body>
-                {/* <Modal.Body>
-                <br />
-                <p>
-                    <strong>Regional Rarity: </strong> {}
-                </p>
-                <p>
-                    <strong>Points: </strong> {}
-                </p>
-                </Modal.Body> */}
                 <Modal.Footer>
                 <div style={{ position: 'relative',left:'50px' }}>
                         <img src={logo} alt="Weedle Logo" style={{ width: '10%', height: 'auto' }} />

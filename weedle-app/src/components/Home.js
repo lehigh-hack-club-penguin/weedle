@@ -5,8 +5,8 @@ import logo from '../logo.svg'
 export default function Home() {
   return (
     <>
-      <div className='home-container'>
-        <div className='home-title'>Weasel the Weeds</div>
+      <div className='main-container'>
+        <div className='page-title'>Weasel the Weeds</div>
         {/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <img src={logo} alt="Weedle Logo" style={{ width: '5%', height: 'auto' }} />
         </div> */}

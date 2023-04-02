@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './styles/LeaderboardStyles.css'
 import {ref, get} from "firebase/database"
+import Container from 'react-bootstrap/Container';
 
 export default function LeaderBoard(props) {
 
@@ -20,11 +21,14 @@ export default function LeaderBoard(props) {
       
       setElements(userData.map((user, index) => {
         return(
-          <div key={index} className={index%2 ? 'white':'grey'}>
-            <p id='leader-position' className='row-element'>#{index+1}</p>
+          <>
+          <Container key={index} className={index%2 ? 'white':'grey'} style={{borderRadius:'10em'}}>
+            <p id='leader-position' className='row-element'><span style={{fontWeight:'bold'}}>#{index+1}</span></p>
             <p id='row-user' className='row-element'>{user.username}</p>
             <p id='row-points' className='row-element'>{user.points}</p>
-          </div>
+          </Container>
+          <br></br>
+          </>
         );
       }))
   }
@@ -34,13 +38,21 @@ export default function LeaderBoard(props) {
   }, [])
 
   return (
+    <div class='main-container'>
+    <div className='page-title'>Leaderboard</div>
+    <br></br>
+    <br></br>
+    <br></br>
     <div className='list'>
       <div className='row'>
-        <p id='leader-position' className='row-element'><strong>Position</strong></p>
-        <p id='row-user' className='row-element'><strong>Username</strong></p>
-        <p id='row-points' className='row-element'><strong>Points</strong></p>
+      
+        <p id='leader-position' className='row-element' style={{fontSize:'1.5em'}}><strong>Position</strong></p>
+        <p id='row-user' className='row-element' style={{fontSize:'1.5em'}}><strong>Username</strong></p>
+        <p id='row-points' className='row-element' style={{fontSize:'1.5em'}}><strong>Points</strong></p>
+      
       </div>
       {elements}
+    </div>
     </div>
   )
 }

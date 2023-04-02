@@ -2,3 +2,21 @@
     margin: 0;
     padding: 0;
 }
+
+.main-container {
+    background: url('components/imgs/Weedle-Background.svg') no-repeat center;
+    background-size: cover;
+    height: 90vh;
+    background-attachment: fixed;
+    width: 100%;
+    position: absolute;
+}
+
+.page-title {
+    position: relative;
+    top: 100px;
+    color: rgba(0, 100, 0, 1);
+    font-size: 72px;
+    font-weight: bold;
+    text-align: center;
+}

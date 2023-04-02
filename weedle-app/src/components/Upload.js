@@ -223,7 +223,7 @@ export default function Upload(props) {
                     <Button variant="secondary" onClick={handleCloseUpload}>
                         Cancel
                     </Button>
-                    <Button variant="primary" onClick={handleUploadClick}>
+                    <Button variant="success" onClick={handleUploadClick}>
                         Weedle
                     </Button>
                 </Modal.Footer>
