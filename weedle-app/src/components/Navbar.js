@@ -52,8 +52,8 @@ export default function Header(props) {
       </Nav>
       <Button
         variant="success"
-        // class="btn btn-green"
-        // style={{ color: "white", background: "#006400" }}
+        class="btn btn-green"
+        style={{ color: "white", background: "#006400" }}
         size="sm"
         onClick={handleButtonClick}
         >
@@ -69,8 +69,8 @@ export default function Header(props) {
         <Upload showUpload={showUpload && userLoggedIn} handleCloseUpload={handleCloseUpload} db={props.db}/>
         <Button 
           variant="success" 
-          // class="btn btn-green"
-          // style={{ color: "white", background: "#006400" }}
+          class="btn btn-green"
+          style={{ color: "white", background: "#006400" }}
           size="sm" 
           id='profile-button'>
           <PersonFill /> 

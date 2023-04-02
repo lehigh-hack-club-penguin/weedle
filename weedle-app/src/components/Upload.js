@@ -161,8 +161,9 @@ export default function Upload(props) {
             // show points notification
             setShowPointsNotification(true);
             setTimeout(() => {
-                    setShowPointsNotification(false);
-                }, 3000);
+                setShowPointsNotification(false);
+                window.location.reload(false);
+            }, 3000);
             // close modal
             handleCloseUpload();
         } else {
