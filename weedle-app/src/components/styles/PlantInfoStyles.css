@@ -1,0 +1,22 @@
+.plant-info {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.plant-name {
+    width: 100%;
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.plant-description {
+    margin: 5px;
+}
+
+.plant-img {
+    grid-area: 1 / 2 / 2 / 3;
+    width: 96%;
+    height: 96%;
+    margin: 2%;
+}

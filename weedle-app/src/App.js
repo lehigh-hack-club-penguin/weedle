@@ -12,7 +12,7 @@ function App(props) {
       <Navbar />
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/radar" element={<Radar />}></Route>
+        <Route path="/radar" element={<Radar db={props.db}/>}></Route>
           <Route path="/leaderboard" element={<LeaderBoard db={props.db}/>}></Route>
       </Routes>
     </BrowserRouter>
