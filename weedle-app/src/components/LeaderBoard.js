@@ -19,12 +19,11 @@ export default function LeaderBoard(props) {
     userData.sort((a, b) => b.points - a.points);
 
       setElements(userData.map((user, index) => {
-        return( 
+        return(
           <div className='row' key={index} id={index%2 ? 'white':'grey'}>
-            <p className='row-element'>#{index+1}</p>
-            
-            <p className='row-element'>{user.username}</p>
-            <p className='row-element'>{user.points}</p>
+            <div id='leader-position' className='row-element'>#{index+1}</div>
+            <div id='row-user' className='row-element'>{user.username}</div>
+            <div id='row-points' className='row-element'>{user.points}</div>
           </div>
         );
       }))
@@ -37,9 +36,9 @@ export default function LeaderBoard(props) {
   return (
     <div className='list'>
       <div className='row'>
-        <p className='row-element'><strong>Position</strong></p>
-        <p className='row-element'><strong>Username</strong></p>
-        <p className='row-element'><strong>Points</strong></p>
+        <div id='leader-position' className='row-element'><strong>Position</strong></div>
+        <div id='row-user' className='row-element'><strong>Username</strong></div>
+        <div id='row-points' className='row-element'><strong>Points</strong></div>
       </div>
       {elements}
     </div>
