@@ -8,13 +8,16 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Upload from './Upload';
+import Profile from './Profile';
 import logo from '../weedle-logo.svg';
 
 export default function Header(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const [showUpload, setShowUpload] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const handleCloseUpload = () => setShowUpload(false);
+  const handleCloseProfile = () => setShowProfile(false);
   const [userLoggedIn, setUserLoggedIn] = useState(localStorage.getItem('userLoggedIn') === 'true');
 
 
@@ -23,6 +26,14 @@ export default function Header(props) {
     // localStorage.removeItem('userLoggedIn');
     if (userLoggedIn) {
       setShowUpload(true);
+    } else {
+      setShow(true);
+    }
+  }
+
+  function handleProfileButtonClick() {
+    if (userLoggedIn) {
+      setShowProfile(true);
     } else {
       setShow(true);
     }
@@ -67,12 +78,14 @@ export default function Header(props) {
       &nbsp;&nbsp;&nbsp;&nbsp;
         <Login show={show && !userLoggedIn} handleClose={handleClose} db={props.db} setUserLoggedIn={setUserLoggedIn} setShowUpload={setShowUpload}/>
         <Upload showUpload={showUpload && userLoggedIn} handleCloseUpload={handleCloseUpload} db={props.db}/>
+        <Profile showProfile={showProfile && userLoggedIn} handleCloseProfile={handleCloseProfile} db={props.db}/>
         <Button 
           variant="success" 
           class="btn btn-green"
           style={{ color: "white", background: "#006400" }}
           size="sm" 
-          id='profile-button'>
+          id='profile-button'
+          onClick={handleProfileButtonClick}>
           <PersonFill /> 
         </Button>
         </Container>

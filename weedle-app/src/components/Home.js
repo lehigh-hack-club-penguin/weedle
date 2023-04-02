@@ -1,11 +1,15 @@
 import React from 'react'
 import './styles/HomeStyles.css'
-import Card from 'react-bootstrap/Card';
+import Card from 'react-bootstrap/Card'
+import logo from '../logo.svg'
 export default function Home() {
   return (
     <>
       <div className='home-container'>
         <div className='home-title'>Weasel the Weeds</div>
+        {/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img src={logo} alt="Weedle Logo" style={{ width: '5%', height: 'auto' }} />
+        </div> */}
         <div className='home-content' style={{position: 'relative'}}>
         <Card style={{ height: '35%', width: '50rem' }}>
           <Card.Body>
