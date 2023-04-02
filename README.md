@@ -22,6 +22,9 @@ Get this project running by simply click [this](https://weedle-3f1c5.web.app/) l
 
 ## Citations
 Home Picture - Guy Lebreton 
+
 Data - [iNaturalist.org](https://www.inaturalist.org/home)
+
 The problem with invasive species - [maine.gov](https://www.maine.gov/dacf/php/documents/nisaweconomics.pdf)
+
 Google API - [cloud.google.com](https://cloud.google.com/)
