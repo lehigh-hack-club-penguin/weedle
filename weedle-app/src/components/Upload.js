@@ -1,44 +1,146 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { ref, onValue, set } from "firebase/database";
+import { ref, onValue, set, child, push, update } from "firebase/database";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 // import css
 import './styles/Upload.css';
 
 export default function Upload(props) {
     const [file, setFile] = useState(null);
     const [attemptedUpload, setAttemptedUpload] = useState(false);
+    const [showPointsNotification, setShowPointsNotification] = useState(false);
+    const userID = localStorage.getItem('userID');
+    const [points, setPoints] = useState(0);
+    
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [showTypeaheadNotification, setShowTypeaheadNotification] = useState(false);
+    const [options, setOptions] = useState([]);
+    
+
+    // LOAD DATA FOR OPTIONS
+    useEffect(() => {
+        const query = ref(props.db, 'plants');
+        onValue(query, (snapshot) => {
+            const data = snapshot.val();
+            console.log(data);
+            console.log(data.length);
+            const options = []; // iterate through data get data[i]['commonName']
+            for (let i = 0; i < data.length; i++) {
+                options.push(data[i]['commonName']);
+            }
+            setOptions(options);
+        });
+    }, []);
+
+    const handleSelect = (selected) => {
+        setSelectedOption(selected[0]);
+    };
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     }
 
+    // const handleUploadClick = () => {
+    //     if (file !== null && file !== undefined) {
+    //         console.log(file);
+    //         // TODO: UPLOAD FILE TO FIREBASE
+    //         // UPDATE POINTS FOR USER
+    //         // get user's current points
+    //         // we have table users with userID as key
+    //         // each user has a points field
+    //         console.log('user id: ' + userID);
+    //         const query = ref(props.db, 'users/' + userID);
+    //         onValue(query, (user) => {
+    //             const data = user.val();
+    //             // console.log(data);
+    //             // console.log(data.points);
+    //             setPoints(data.points);
+    //         });
+    //         // add 10 points to user's points
+    //         const newPoints = points + 10;
+    //         update(ref(props.db, '/users/' + userID), {
+    //             points: newPoints
+    //         });
+    //         // show points notification
+    //         setShowPointsNotification(true);
+    //         setTimeout(() => {
+    //                 setShowPointsNotification(false);
+    //             }, 3000);
+    //         // close modal
+    //         handleCloseUpload();
+            
+    //     } else {
+    //         setAttemptedUpload(true);
+    //     }
+    // }
     const handleUploadClick = () => {
-        if (file !== null && file !== undefined) {
+        if (file !== null && file !== undefined && selectedOption !== null && selectedOption !== undefined) {
             console.log(file);
             // TODO: UPLOAD FILE TO FIREBASE
-            props.handleCloseUpload();
+            // UPDATE POINTS FOR USER
+            // get user's current points
+            // we have table users with userID as key
+            // each user has a points field
+            console.log('user id: ' + userID);
+            const query = ref(props.db, 'users/' + userID);
+            onValue(query, (user) => {
+                const data = user.val();
+                // console.log(data);
+                // console.log(data.points);
+                setPoints(data.points);
+            });
+            // add 10 points to user's points
+            const newPoints = points + 10;
+            update(ref(props.db, '/users/' + userID), {
+                points: newPoints
+            });
+            // show points notification
+            setShowPointsNotification(true);
+            setTimeout(() => {
+                    setShowPointsNotification(false);
+                }, 3000);
+            // close modal
+            handleCloseUpload();
         } else {
             setAttemptedUpload(true);
+            if (selectedOption === null || selectedOption === undefined) {
+                setShowTypeaheadNotification(true);
+            }
         }
     }
+    
 
     const handleCloseUpload = () => {
         setFile(null);
         setAttemptedUpload(false);
+        setShowTypeaheadNotification(false);
+        setSelectedOption(null);
         props.handleCloseUpload();
     }
 
     const fileInputClasses = `form-control ${attemptedUpload && !file ? 'is-invalid shake' : ''}`;
 
+   
     return (
         <>
-            <Modal show={props.showUpload} onHide={props.handleCloseUpload} centered>
+            <Modal show={props.showUpload} onHide={props.handleCloseUpload} centered backdrop="static">
                 <Modal.Header closeButton>
-                    <Modal.Title>Upload Picture</Modal.Title>
+                    <Modal.Title>Let's Weedle!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                <Typeahead
+                id="searchable-dropdown"
+                labelKey={(option) => option}
+                options={options}
+                placeholder="Select an invasive species..."
+                onChange={handleSelect}
+                selected={selectedOption ? [selectedOption] : []}
+                className={showTypeaheadNotification && (selectedOption === null || selectedOption === undefined) ? 'border border-danger' : ''}
+                />
+                <br />
                     <Form>
                         <Form.Group controlId="formFile">
                             <Form.Label>Choose a picture to upload:</Form.Label>
@@ -58,6 +160,11 @@ export default function Upload(props) {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            {showPointsNotification && (
+                <div className="points-notification">
+                    +10 points!
+                </div>
+            )}
         </>
     );
 }

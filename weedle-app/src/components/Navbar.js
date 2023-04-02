@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/NavbarStyle.css'
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -12,6 +12,7 @@ export default function Navbar(props) {
   const [showUpload, setShowUpload] = useState(false);
   const handleCloseUpload = () => setShowUpload(false);
   const [userLoggedIn, setUserLoggedIn] = useState(localStorage.getItem('userLoggedIn') === 'true');
+
 
   function handleButtonClick() {
     // remove local storage for testing
