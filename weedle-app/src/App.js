@@ -4,13 +4,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './components/Home';
 import LeaderBoard from './components/LeaderBoard';
 import Radar from './components/Radar';
-import Navbar from './components/Navbar';
+import Header from './components/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App(props) {
   return (
     <BrowserRouter>
-      <Navbar db={props.db}/>
+      <Header db={props.db}/>
       <Routes>
           <Route path="/" element={<Home />} />
         <Route path="/radar" element={<Radar db={props.db}/>}></Route>
