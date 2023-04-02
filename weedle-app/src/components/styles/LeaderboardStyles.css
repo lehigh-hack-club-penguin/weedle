@@ -8,7 +8,8 @@
 
 .row-element {
     display: inline;
-}
+    margin: auto;
+} 
 
 .list {
     width: 100%;
@@ -16,7 +17,7 @@
 }
 
 #grey {
-    background-color: rgb(187, 187, 187);
+    background-color: rgb(13, 132, 2);
 }
 
 #white {

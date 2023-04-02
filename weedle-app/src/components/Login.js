@@ -22,6 +22,7 @@ export default function Login(props) {
         const sub = userObj.sub;
         // save userLoggedIn to local storage
         localStorage.setItem('userID', sub);
+        // console.log('user id: ' + sub)
         // CHECK IF USER EXISTS
         const query = ref(props.db, 'users/' + sub);
         onValue(query, (user) => {
@@ -39,9 +40,8 @@ export default function Login(props) {
                 console.log('User exists');
             }
         });
+        props.setUserLoggedIn(true);
         props.handleClose();
-        
-        localStorage.setItem('userLoggedIn', true);
         props.setShowUpload(true);
     }
 
@@ -64,5 +64,3 @@ export default function Login(props) {
     </>
   );
 }
-
-

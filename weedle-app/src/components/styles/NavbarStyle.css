@@ -40,3 +40,21 @@
 
 #weedle-link {
 }
+
+/* #btn-green {
+    background-color: #006400;
+    color: #fff;
+    border-color: #006400;
+} */
+
+.btn-green {
+    background-color: #8159EB;
+    font-size: 12px;
+    color: white;
+    border: none;
+  }
+  
+.btn-green:hover {
+    background-color: #003300;
+    border-color: #003300;
+}
