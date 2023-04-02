@@ -42,8 +42,13 @@ export default function Login(props) {
         });
         props.setUserLoggedIn(true);
         props.handleClose();
-        props.setShowUpload(true);
-        props.setShowProfile(true);
+        // props.setShowUpload(true);
+        // props.setShowProfile(true);
+        if (props.option === 'weedle') {
+            props.setShowUpload(true);
+        } else if (props.option === 'profile') {
+            props.setShowProfile(true);
+        }
     }
 
   return (

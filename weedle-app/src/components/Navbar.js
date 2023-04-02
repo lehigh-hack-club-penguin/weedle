@@ -20,9 +20,11 @@ export default function Header(props) {
   const handleCloseProfile = () => setShowProfile(false);
   // const [userLoggedIn, setUserLoggedIn] = useState(localStorage.getItem('userLoggedIn') === 'true');
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [option, setOption] = useState('');
 
 
   function handleButtonClick() {
+    setOption('weedle');
     // remove local storage for testing
     // localStorage.removeItem('userLoggedIn');
     if (userLoggedIn) {
@@ -34,6 +36,7 @@ export default function Header(props) {
   }
 
   function handleProfileButtonClick() {
+    setOption('profile');
     if (userLoggedIn) {
       setShowProfile(true);
     } else {
@@ -78,7 +81,7 @@ export default function Header(props) {
           Weedle
       </Button>
       &nbsp;&nbsp;&nbsp;&nbsp;
-        <Login show={show && !userLoggedIn} handleClose={handleClose} db={props.db} setUserLoggedIn={setUserLoggedIn} setShowUpload={setShowUpload} setShowProfile={setShowProfile}/>
+        <Login show={show && !userLoggedIn} handleClose={handleClose} db={props.db} setUserLoggedIn={setUserLoggedIn} setShowUpload={setShowUpload} setShowProfile={setShowProfile} option={option}/>
         <Upload showUpload={showUpload && userLoggedIn} handleCloseUpload={handleCloseUpload} db={props.db}/>
         <Profile showProfile={showProfile && userLoggedIn} handleCloseProfile={handleCloseProfile} db={props.db}/>
         <Button 
