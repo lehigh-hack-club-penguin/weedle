@@ -17,17 +17,13 @@ export default function LeaderBoard(props) {
     });
 
     userData.sort((a, b) => b.points - a.points);
-      if(userData.length !=0)
+      
       setElements(userData.map((user, index) => {
         return(
-          <div className='row' key={index} id={index%2 ? 'white':'grey'}>
-            <div id='leader-position' className='row-element'>#{index+1}</div>
-            <div id='row-user' className='row-element'>
-              <img src={user.profile_url} id='row-pic'></img>
-              <div id='row-user' className='row-element'>{user.username}</div>
-            </div>
-            <div id='row-user' className='row-element'>{user.username}</div>
-            <div id='row-points' className='row-element'>{user.points}</div>
+          <div key={index} className={index%2 ? 'white':'grey'}>
+            <p id='leader-position' className='row-element'>#{index+1}</p>
+            <p id='row-user' className='row-element'>{user.username}</p>
+            <p id='row-points' className='row-element'>{user.points}</p>
           </div>
         );
       }))
