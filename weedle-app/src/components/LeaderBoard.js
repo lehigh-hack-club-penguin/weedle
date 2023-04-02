@@ -22,7 +22,6 @@ export default function LeaderBoard(props) {
         return( 
           <div className='row' key={index} id={index%2 ? 'white':'grey'}>
             <p className='row-element'>#{index+1}</p>
-            
             <p className='row-element'>{user.username}</p>
             <p className='row-element'>{user.points}</p>
           </div>
@@ -37,9 +36,9 @@ export default function LeaderBoard(props) {
   return (
     <div className='list'>
       <div className='row'>
-        <p className='row-element'><strong>Position</strong></p>
-        <p className='row-element'><strong>Username</strong></p>
-        <p className='row-element'><strong>Points</strong></p>
+        <div className='row-element'><strong>Position</strong></div>
+        <div className='row-element'><strong>Username</strong></div>
+        <div className='row-element'><strong>Points</strong></div>
       </div>
       {elements}
     </div>

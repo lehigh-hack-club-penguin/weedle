@@ -105,6 +105,10 @@ export default function Radar(props) {
     return (
         <div className='plant-container'>
             <div className='plant-list'>
+                <div className='side-button' id='table-legend'>
+                    <div className='table-frequency'>Frequency</div>
+                    <div className='table-name'>Plant Name</div>
+                </div>
                 {invasiveList}
             </div>
             <div className='plant-map'>
