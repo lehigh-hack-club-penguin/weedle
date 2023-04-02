@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import jwt_decode from "jwt-decode";
 import Modal from 'react-bootstrap/Modal';
 import { GoogleLogin } from '@react-oauth/google';
 import { ref, onValue, set } from "firebase/database";
-// import function Upload
-import Upload from './Upload';
 
 // import css
 import './styles/Login.css';
 
 export default function Login(props) {
     
-    const [userLoggedIn, setUserLoggedIn] = useState(false);
+    const userLoggedIn = props.userLoggedIn;
     
     function handleCallbackResponse(response) {
         const tokenId = response.credential;

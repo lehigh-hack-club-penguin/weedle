@@ -14,6 +14,8 @@ export default function Navbar(props) {
   const [userLoggedIn, setUserLoggedIn] = useState(localStorage.getItem('userLoggedIn') === 'true');
 
   function handleButtonClick() {
+    // remove local storage for testing
+    // localStorage.removeItem('userLoggedIn');
     if (userLoggedIn) {
       setShowUpload(true);
     } else {
