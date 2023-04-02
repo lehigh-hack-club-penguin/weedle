@@ -31,9 +31,12 @@
     grid-area: 1 / 4 / 2 / 5;
 }
 
-.login {
+/* .login {
     grid-area: 1 / 6 / 2 / 7;
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+
+#weedle-link {
 }
