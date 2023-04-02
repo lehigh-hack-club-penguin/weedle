@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './styles/LeaderboardStyles.css'
 import {ref, get} from "firebase/database"
 import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
 
 export default function LeaderBoard(props) {
 
@@ -23,9 +24,9 @@ export default function LeaderBoard(props) {
         return(
           <>
           <Container key={index} className={index%2 ? 'white':'grey'} style={{borderRadius:'10em'}}>
-            <p id='leader-position' className='row-element'><span style={{fontWeight:'bold'}}>#{index+1}</span></p>
-            <p id='row-user' className='row-element'>{user.username}</p>
-            <p id='row-points' className='row-element'>{user.points}</p>
+            <p id='leader-position' className='row-element'><span style={{fontSize:'1.25em', fontWeight:'bold'}}>#{index+1}</span></p>
+            <p id='row-user' className='row-element' style={{fontSize:'1.25em'}}>{user.username}</p>
+            <p id='row-points' className='row-element' style={{fontSize:'1.25em'}}>{user.points}</p>
           </Container>
           <br></br>
           </>

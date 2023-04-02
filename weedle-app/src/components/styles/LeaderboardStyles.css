@@ -25,13 +25,23 @@
 }
 
 .white:hover {
-    transition: all .5s;
-    background: rgba(1, 1, 1, .1);
+    transition: all .3s;
+    /* background: rgba(1, 1, 1, .1); */
+    outline-width: 3px;
+    outline-color: #006400;
+    outline-style: solid;
+    color: #006400;
+    font-weight: bold;
 }
 
 .grey:hover {
-    transition: all .5s;
-    background: rgba(1, 1, 1, .1);
+    transition: all .3s;
+    /* background: rgba(1, 1, 1, .1); */
+    outline-width: 3px;
+    outline-color: #006400;
+    outline-style: solid;
+    color: #006400;
+    font-weight: bold;
 }
 
 .row-element {
