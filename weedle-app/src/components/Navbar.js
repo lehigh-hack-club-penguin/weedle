@@ -18,13 +18,15 @@ export default function Header(props) {
   const [showProfile, setShowProfile] = useState(false);
   const handleCloseUpload = () => setShowUpload(false);
   const handleCloseProfile = () => setShowProfile(false);
-  const [userLoggedIn, setUserLoggedIn] = useState(localStorage.getItem('userLoggedIn') === 'true');
+  // const [userLoggedIn, setUserLoggedIn] = useState(localStorage.getItem('userLoggedIn') === 'true');
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
 
   function handleButtonClick() {
     // remove local storage for testing
     // localStorage.removeItem('userLoggedIn');
     if (userLoggedIn) {
+      // console.log(localStorage.getItem('userLoggedIn'))
       setShowUpload(true);
     } else {
       setShow(true);
@@ -76,7 +78,7 @@ export default function Header(props) {
           Weedle
       </Button>
       &nbsp;&nbsp;&nbsp;&nbsp;
-        <Login show={show && !userLoggedIn} handleClose={handleClose} db={props.db} setUserLoggedIn={setUserLoggedIn} setShowUpload={setShowUpload}/>
+        <Login show={show && !userLoggedIn} handleClose={handleClose} db={props.db} setUserLoggedIn={setUserLoggedIn} setShowUpload={setShowUpload} setShowProfile={setShowProfile}/>
         <Upload showUpload={showUpload && userLoggedIn} handleCloseUpload={handleCloseUpload} db={props.db}/>
         <Profile showProfile={showProfile && userLoggedIn} handleCloseProfile={handleCloseProfile} db={props.db}/>
         <Button 

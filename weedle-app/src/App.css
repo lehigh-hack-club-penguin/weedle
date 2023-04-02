@@ -10,6 +10,7 @@
     background-attachment: fixed;
     width: 100%;
     position: absolute;
+    z-index: 0;
 }
 
 .page-title {

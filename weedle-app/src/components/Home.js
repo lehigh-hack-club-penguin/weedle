@@ -39,12 +39,8 @@ export default function Home() {
           </Card.Body>
         </Card>
         </div>
-        <br></br><br></br>
-        <br></br><br></br>
-        <br></br><br></br>
-        <br></br><br></br>
-        <br></br>
-        <Card style={{ width: '50rem' }}>
+        
+        {/* <Card style={{ width: '50rem' }}>
         <Card.Body>
             <Card.Title>Raising 🙌 Awareness To Your Surroundings</Card.Title>
             <Card.Subtitle className="mb-2 text-muted"> Weedle shows how your neirghborhood and surrounding area is affected</Card.Subtitle>
@@ -54,7 +50,7 @@ export default function Home() {
               rarer the species in your area the more reward you get in reporting it!
             </Card.Text>
           </Card.Body>
-        </Card>
+        </Card> */}
         </div>
       </div>
     </>

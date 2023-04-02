@@ -43,6 +43,7 @@ export default function Login(props) {
         props.setUserLoggedIn(true);
         props.handleClose();
         props.setShowUpload(true);
+        props.setShowProfile(true);
     }
 
   return (
