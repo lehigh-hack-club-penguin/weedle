@@ -25,6 +25,11 @@ export default function Navbar(props) {
 
   return (
     <div className='navbar'>
+<<<<<<< HEAD
+      <Link className='title link' to='/'>Weedle</Link>
+      <Link className='link' id='radar-link' to='/radar'>Radar</Link>
+      <Link className='link' id='leaderboard-link' to='/leaderboard'>Leaderboard</Link>
+=======
         <div className='title'>Weedle</div>
         <Link className='link' id='leaderboard-link' to='/leaderboard'>Leaderboard</Link>
         <Link className='link' id='radar-link' to='/radar'>Radar</Link>
@@ -42,6 +47,7 @@ export default function Navbar(props) {
         <Button variant="primary"  className="rounded-circle link" id='profile-button'>
           <PersonFill /> 
         </Button>
+>>>>>>> 9c810260bbfea26331bd15aef3e7909f6ff5890d
     </div>
   )
 }

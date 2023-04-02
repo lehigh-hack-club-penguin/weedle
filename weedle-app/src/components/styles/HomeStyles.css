@@ -1,0 +1,38 @@
+.home-container {
+    background: url('../imgs/pexels-guy-lebreton-4197781.jpg') no-repeat center;
+    background-size: cover;
+    height: 90vh;
+    background-attachment: fixed;
+    width: 100%;
+}
+
+.home-title {
+    position: relative;
+    top: 100px;
+    color: white;
+    font-size: 72px;
+    text-align: center;
+}
+
+.home-content {
+    position: relative;
+    top: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 800px;
+    width: 100%;
+}
+
+.home-text {
+    border: 2px white solid;
+    color: white;
+    padding: 5%;
+    max-width: 550px;
+    min-width: 550px;
+    max-height: 500px;
+    min-height: 350px;
+    font-size: 28px;
+    text-align: justify;
+    background-color: rgba(1, 1, 1, .5);
+}

@@ -1,17 +1,134 @@
-import React from 'react'
+import {React, useEffect, useState} from 'react'
 import './styles/RadarStyles.css'
-export default function Radar() {
+import PlantInfo from './PlantInfo'
+import './styles/MapStyles.css'
+import pin from './imgs/pin.png'
+import { ref, get } from "firebase/database"
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import GoogleMapReact from 'google-map-react';
+
+var userLat = 40.600526;
+var userLng = -75.362015;
+const id = ["404f73171fbd2fa8"];
+
+export default function Radar(props) {
+
+    const [data, setData] = useState([])
+    const [selectedIndex, setSelectedIndex] = useState(0)
+    const [selectedPlant, setSelectedPlant] = useState()
+    const [invasiveList, setInvasiveList] = useState()
+
+    function handle(index) {
+        setSelectedIndex(index)
+        setSelectedPlant(data[index])
+    }
+
+    async function loadData() {
+        var d = []
+        const query = ref(props.db, 'plants/')
+        await get(query).then((plants) => {
+            var plant = plants.val()
+            for (var p in plant) {
+                d.push({ name: plant[p].commonName, desc: plant[p].description, img: plant[p].image, frequency: .5 })
+            }
+        });
+        setData(d)
+    }
+
+    function makeInvasive(highlighted) {
+        return(
+            data.map((plant, index) => {
+                return(
+                    <div className='side-button' id={highlighted===index ? 'highlighted':'unhighlighted'} key={index} onClick={() => handle(index)}>
+                        <div className='table-frequency'>{100*(plant.frequency)+'%'}</div>
+                        <div className='table-name'>{plant.name}</div>
+                    </div>
+                )
+            }
+        ))
+    }
+
+    useEffect(() => {
+        setInvasiveList(makeInvasive(selectedIndex))
+    }, [selectedPlant])
+
+    useEffect(() => {
+        loadData()
+    }, [])
+
+    useEffect(() => {
+        if(data.length != 0) {
+            setSelectedPlant(data[selectedIndex])
+        }
+    }, [data])
+
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: 'AIzaSyDJ7LumYrHTspXN4rQmFZBrpMx3Ugg7Oak',
+        mapIds: { id }
+    });
+    if (!isLoaded) return <div>Loading...</div>
+
     return (
-        <div className='container'>
+        <div className='plant-container'>
             <div className='plant-list'>
-                <div className='invasive-title'>
-                    <div className='center-text'>Invasive Plants</div>
-                </div>
+                {invasiveList}
             </div>
             <div className='plant-map'>
-                <div className='plant-name'>Big Leaf</div>
-                <div className='plant-description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                {selectedPlant ? <PlantInfo name={selectedPlant.name} desc={selectedPlant.desc} img={selectedPlant.img} /> : <></>}
+                <Map />
             </div>
         </div>
     )
 }
+
+const Mark = ({ icon }) => <div style={{ position: 'absolute', transform: 'translate(-50%, -100%)' }}><img src={icon}></img></div>;
+
+function Map() {
+
+    var positions = [
+        {
+            x: 40,
+            y: -75,
+        },
+        {
+            x: 41,
+            y: -75.2,
+        }
+    ]
+
+    const [marks, setMarks] = useState(makePos())
+
+    function makePos() {
+        return (positions.map((pos, index) => {
+            return <Mark lat={pos.x} lng={pos.y} icon={pin} key={index}/>
+        }))
+    }
+
+    return (
+        <GoogleMapReact
+            zoom={12}
+            center={{ lat: userLat, lng: userLng }}
+            className="map-container"
+        >
+            {marks}
+        </GoogleMapReact>
+    );
+}
+(function getUserLocation() {
+    if (navigator.geolocation) {
+        // get user's current position
+        navigator.geolocation.getCurrentPosition(
+            // success callback
+            (position) => {
+                userLat = position.coords.latitude;
+                userLng = position.coords.longitude;
+            },
+            // error callback
+            (error) => {
+                console.error(error);
+            }
+        );
+    } else {
+        console.error("Geolocation is not supported by this browser.");
+    }
+})();
