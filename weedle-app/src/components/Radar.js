@@ -81,9 +81,28 @@ export default function Radar(props) {
     )
 }
 
-const AnyReactComponent = ({ icon }) => <div style={{ position: 'absolute', transform: 'translate(-50%, -100%)' }}><img src={icon}></img></div>;
+const Mark = ({ icon }) => <div style={{ position: 'absolute', transform: 'translate(-50%, -100%)' }}><img src={icon}></img></div>;
 
 function Map() {
+
+    var positions = [
+        {
+            x: 40,
+            y: -75,
+        },
+        {
+            x: 41,
+            y: -75.2,
+        }
+    ]
+
+    const [marks, setMarks] = useState(makePos())
+
+    function makePos() {
+        return (positions.map((pos, index) => {
+            return <Mark lat={pos.x} lng={pos.y} icon={pin} key={index}/>
+        }))
+    }
 
     return (
         <GoogleMapReact
@@ -91,11 +110,7 @@ function Map() {
             center={{ lat: userLat, lng: userLng }}
             className="map-container"
         >
-            <AnyReactComponent
-                lat={userLat}
-                lng={userLng}
-                icon={pin}
-            />
+            {marks}
         </GoogleMapReact>
     );
 }
