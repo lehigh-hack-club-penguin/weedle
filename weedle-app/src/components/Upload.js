@@ -16,6 +16,7 @@ export default function Upload(props) {
     const [points, setPoints] = useState(0);
     
     const [selectedOption, setSelectedOption] = useState(null);
+    const [showTypeaheadNotification, setShowTypeaheadNotification] = useState(false);
     const [options, setOptions] = useState([]);
     
 
@@ -42,8 +43,41 @@ export default function Upload(props) {
         setFile(event.target.files[0]);
     }
 
+    // const handleUploadClick = () => {
+    //     if (file !== null && file !== undefined) {
+    //         console.log(file);
+    //         // TODO: UPLOAD FILE TO FIREBASE
+    //         // UPDATE POINTS FOR USER
+    //         // get user's current points
+    //         // we have table users with userID as key
+    //         // each user has a points field
+    //         console.log('user id: ' + userID);
+    //         const query = ref(props.db, 'users/' + userID);
+    //         onValue(query, (user) => {
+    //             const data = user.val();
+    //             // console.log(data);
+    //             // console.log(data.points);
+    //             setPoints(data.points);
+    //         });
+    //         // add 10 points to user's points
+    //         const newPoints = points + 10;
+    //         update(ref(props.db, '/users/' + userID), {
+    //             points: newPoints
+    //         });
+    //         // show points notification
+    //         setShowPointsNotification(true);
+    //         setTimeout(() => {
+    //                 setShowPointsNotification(false);
+    //             }, 3000);
+    //         // close modal
+    //         handleCloseUpload();
+            
+    //     } else {
+    //         setAttemptedUpload(true);
+    //     }
+    // }
     const handleUploadClick = () => {
-        if (file !== null && file !== undefined) {
+        if (file !== null && file !== undefined && selectedOption !== null && selectedOption !== undefined) {
             console.log(file);
             // TODO: UPLOAD FILE TO FIREBASE
             // UPDATE POINTS FOR USER
@@ -70,15 +104,20 @@ export default function Upload(props) {
                 }, 3000);
             // close modal
             handleCloseUpload();
-            
         } else {
             setAttemptedUpload(true);
+            if (selectedOption === null || selectedOption === undefined) {
+                setShowTypeaheadNotification(true);
+            }
         }
     }
+    
 
     const handleCloseUpload = () => {
         setFile(null);
         setAttemptedUpload(false);
+        setShowTypeaheadNotification(false);
+        setSelectedOption(null);
         props.handleCloseUpload();
     }
 
@@ -87,7 +126,7 @@ export default function Upload(props) {
    
     return (
         <>
-            <Modal show={props.showUpload} onHide={props.handleCloseUpload} centered>
+            <Modal show={props.showUpload} onHide={props.handleCloseUpload} centered backdrop="static">
                 <Modal.Header closeButton>
                     <Modal.Title>Let's Weedle!</Modal.Title>
                 </Modal.Header>
@@ -99,6 +138,7 @@ export default function Upload(props) {
                 placeholder="Select an invasive species..."
                 onChange={handleSelect}
                 selected={selectedOption ? [selectedOption] : []}
+                className={showTypeaheadNotification && (selectedOption === null || selectedOption === undefined) ? 'border border-danger' : ''}
                 />
                 <br />
                     <Form>
