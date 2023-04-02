@@ -2,8 +2,8 @@ import {React, useEffect, useState, useRef} from 'react'
 import './styles/RadarStyles.css'
 import PlantInfo from './PlantInfo'
 import './styles/MapStyles.css'
-import pin from './imgs/pin.png'
-import dot from './imgs/dot.png'
+import pin from './imgs/heatpoint.png'
+import dot from './imgs/pin.png'
 import { ref, get } from "firebase/database"
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import GoogleMapReact from 'google-map-react';
@@ -103,6 +103,7 @@ export default function Radar(props) {
     if (!isLoaded) return <div>Loading...</div>
 
     return (
+        <div class='main-container'>
         <div className='plant-container'>
             <div className='plant-list'>
                 <div className='side-button' id='table-legend'>
@@ -115,6 +116,7 @@ export default function Radar(props) {
                 {selectedPlant ? <PlantInfo name={selectedPlant.name} desc={selectedPlant.desc} img={selectedPlant.img} /> : <></>}
                 {selectedPlant ? <Map plant={selectedPlant.name} db={props.db}/> : <></>}
             </div>
+        </div>
         </div>
     )
 }
