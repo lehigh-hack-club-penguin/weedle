@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { ref, onValue, set, child, push, update } from "firebase/database";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 // import css
 import './styles/Upload.css';
 
@@ -12,6 +14,28 @@ export default function Upload(props) {
     const [showPointsNotification, setShowPointsNotification] = useState(false);
     const userID = localStorage.getItem('userID');
     const [points, setPoints] = useState(0);
+    
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [options, setOptions] = useState([]);
+
+    // LOAD DATA FOR OPTIONS
+    useEffect(() => {
+        const query = ref(props.db, 'plants');
+        onValue(query, (snapshot) => {
+            const data = snapshot.val();
+            console.log(data);
+            console.log(data.length);
+            const options = []; // iterate through data get data[i]['commonName']
+            for (let i = 0; i < data.length; i++) {
+                options.push(data[i]['commonName']);
+            }
+            setOptions(options);
+        });
+    }, []);
+
+    const handleSelect = (selected) => {
+        setSelectedOption(selected[0]);
+    };
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
@@ -59,6 +83,7 @@ export default function Upload(props) {
 
     const fileInputClasses = `form-control ${attemptedUpload && !file ? 'is-invalid shake' : ''}`;
 
+   
     return (
         <>
             <Modal show={props.showUpload} onHide={props.handleCloseUpload} centered>
@@ -66,6 +91,15 @@ export default function Upload(props) {
                     <Modal.Title>Let's Weedle!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                <Typeahead
+                id="searchable-dropdown"
+                labelKey={(option) => option}
+                options={options}
+                placeholder="Select an invasive species..."
+                onChange={handleSelect}
+                selected={selectedOption ? [selectedOption] : []}
+                />
+                <br />
                     <Form>
                         <Form.Group controlId="formFile">
                             <Form.Label>Choose a picture to upload:</Form.Label>
