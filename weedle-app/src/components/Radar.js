@@ -2,8 +2,10 @@ import {React, useEffect, useState} from 'react'
 import './styles/RadarStyles.css'
 import PlantInfo from './PlantInfo'
 import './styles/MapStyles.css'
+import pin from './imgs/pin.png' 
 import { ref, get } from "firebase/database"
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import GoogleMapReact from 'google-map-react';
 
 var userLat = 40.600526;
 var userLng = -75.362015;
@@ -79,18 +81,24 @@ export default function Radar(props) {
     )
 }
 
+const AnyReactComponent = ({ icon }) => <img src={icon}></img>;
+
 function Map() {
 
     return (
-        <GoogleMap
+        <GoogleMapReact
             zoom={12}
             center={{ lat: userLat, lng: userLng }}
             className="map-container"
         >
-            <Marker position={{ lat: userLat, lng: userLng }} title={"Hello"} />
-        </GoogleMap>
+            <AnyReactComponent
+                lat={userLat}
+                lng={userLng}
+                icon={pin}
+            />
+        </GoogleMapReact>
     );
-}
+} 
 (function getUserLocation() {
     if (navigator.geolocation) {
         // get user's current position
