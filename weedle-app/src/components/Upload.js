@@ -179,6 +179,7 @@ export default function Upload(props) {
         setShowTypeaheadNotification(false);
         setSelectedOption(null);
         props.handleCloseUpload();
+        window.location.reload(false);
     }
 
     const fileInputClasses = `form-control ${attemptedUpload && !file ? 'is-invalid shake' : ''}`;
