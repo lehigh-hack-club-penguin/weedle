@@ -34,13 +34,7 @@ const db = getDatabase(app);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<<<<<<< HEAD
-    <App db={db}/>
-=======
-  <React.StrictMode>
     <GoogleOAuthProvider clientId="457068054329-aao8u6novt3lnda08i4jcoulfukbnuut.apps.googleusercontent.com">
-    <App db={db}/>
+      <App db={db}/>
     </GoogleOAuthProvider>
-  </React.StrictMode>
->>>>>>> 9c810260bbfea26331bd15aef3e7909f6ff5890d
 );

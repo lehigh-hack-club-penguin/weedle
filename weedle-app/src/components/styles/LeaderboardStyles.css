@@ -7,7 +7,10 @@
 }
 
 .row-element {
-    width: 200px;
+    max-width: 200px;
+    padding: 0;
+    margin: 0;
+    display: inline;
 }
 
 .list {
