@@ -30,7 +30,7 @@ export default function Header(props) {
 
   return (
     <>
-    <style> type="text/css">
+    <style> type="text/css"
         {`
         .btn-weedle {
           background-color: #8159EB;
